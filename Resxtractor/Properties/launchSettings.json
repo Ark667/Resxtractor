@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Resxtractor": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
