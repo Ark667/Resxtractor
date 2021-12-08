@@ -1,6 +1,7 @@
 ﻿namespace Resxtractor.Test.Integration
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.IO;
 
     /// <summary>
     /// Defines the <see cref="ExtractOptions" />.
@@ -17,8 +18,8 @@
         {
             var extractor = new Options.ExtractOptions()
             {
-                SourcePath = @"..\..\..\..\..\Resxtractor\Resxtractor.Tests.Template\Pages\Index.cshtml",
-                TargetResx = @"..\..\..\..\..\Resxtractor\Resxtractor.Tests.Template\Resources\Language.resx",
+                SourcePath = Path.GetFullPath(@"..\..\..\..\..\Resxtractor\Resxtractor.Tests.Template\Pages\Index.cshtml"),
+                TargetResx = Path.GetFullPath(@"..\..\..\..\..\Resxtractor\Resxtractor.Tests.Template\Resources\Language.resx"),
                 ReplaceMode = false,
             };
 

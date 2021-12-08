@@ -17,7 +17,7 @@ namespace Resxtractor.Test.Unit
         [TestMethod]
         public void UpdateResxFile()
         {
-            var helper = new Helpers.ResxHelper(@"..\..\..\Resources\UpdateResxFile.resx");
+            var helper = new Helpers.ResxHelper(Path.GetFullPath(@"..\..\..\Resources\UpdateResxFile.resx"));
 
             // Empty file
             File.Delete(helper.ResxFile);
@@ -42,10 +42,10 @@ namespace Resxtractor.Test.Unit
             Assert.IsTrue(helper.GetKeyFromValue("test2") == null);
             
             helper.Replace = false;
-            File.Delete(@"..\..\..\Resources\UpdateResxFile.auto.resx");
-            Assert.IsTrue(!File.Exists(@"..\..\..\Resources\UpdateResxFile.auto.resx"));
+            File.Delete(Path.GetFullPath(@"..\..\..\Resources\UpdateResxFile.auto.resx"));
+            Assert.IsTrue(!File.Exists(Path.GetFullPath(@"..\..\..\Resources\UpdateResxFile.auto.resx")));
             helper.UpdateResxFile();
-            Assert.IsTrue(File.Exists(@"..\..\..\Resources\UpdateResxFile.auto.resx"));
+            Assert.IsTrue(File.Exists(Path.GetFullPath(@"..\..\..\Resources\UpdateResxFile.auto.resx")));
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Resxtractor.Test.Unit
         [TestMethod]
         public void GetKeyFromValue()
         {
-            var helper = new Helpers.ResxHelper(@"..\..\..\Resources\GetKeyFromValue.resx");
+            var helper = new Helpers.ResxHelper(Path.GetFullPath(@"../../../Resources/GetKeyFromValue.resx"));
 
             Assert.IsTrue(helper.GetKeyFromValue("test") == "String1");
             Assert.IsTrue(helper.GetKeyFromValue("fail") == null);
