@@ -48,7 +48,7 @@
             });
 
             Console.WriteLine($"Updated '{Path.GetFullPath(TargetResx)}'");
-            Console.WriteLine($"Set access modifier to let VS create {Path.GetFileNameWithoutExtension(ResxFile)}.Designer.cs");
+            Console.WriteLine($"Set access modifier to let VS create {Path.GetFileNameWithoutExtension(TargetResx)}.Designer.cs");
 
             return 0;
         }
