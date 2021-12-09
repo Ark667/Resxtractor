@@ -62,9 +62,6 @@
 
                 writer.Generate();
                 writer.Close();
-
-                Console.WriteLine($"Updated '{Path.GetFullPath(ResxFile)}'");
-                Console.WriteLine($"Set 'ResXFileCodeGenerator' for Custom tool in VS file properties panel to generete {Path.GetFileNameWithoutExtension(ResxFile)}.Designer.cs");
             }
         }
 

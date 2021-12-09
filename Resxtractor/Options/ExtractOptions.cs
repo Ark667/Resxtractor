@@ -14,26 +14,20 @@
         /// <summary>
         /// Gets or sets the SourcePath.
         /// </summary>
-        [Option('s', "sourcePath", HelpText = "Source path to files that will be extracted.", Default = ".", Required = true)]
+        [Option('s', "sourcePath", HelpText = "Source path to files that will be extracted.", Required = true)]
         public string SourcePath { get; set; }
 
         /// <summary>
-        /// Gets or sets the TargetPath.
+        /// Gets or sets the targetResx.
         /// </summary>
-        [Option('t', "targetPath", HelpText = "Target path where .resx files will be created.", Default = ".", Required = true)]
+        [Option('t', "targetResx", HelpText = "Target path where .resx files will be created.", Required = true)]
         public string TargetResx { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether ReplaceMode.
         /// </summary>
-        [Option('r', "repalceMode", HelpText = "Make file replacements, otherwise new files will be created for debug pourposes.", Default = true)]
+        [Option('r', "replaceMode", HelpText = "Make file replacements, otherwise new files will be created for debug pourposes.", Default = true)]
         public bool ReplaceMode { get; set; }
-
-        /// <summary>
-        /// Gets or sets the SourceFilesRegex.
-        /// </summary>
-        [Option('x', "sourceFilesRegex", HelpText = "Source files must match this regex condition.", Default = "html")]
-        public string SourceFilesRegex { get; set; }
 
         /// <summary>
         /// The Extract.
@@ -50,7 +44,11 @@
             {
                 var extractor = new ExtractHelper(sourceFile, ReplaceMode);
                 new ResxHelper(TargetResx, ReplaceMode).UpdateResxFile(extractor.Extract(TargetResx));
+                Console.WriteLine($"Extracted '{sourceFile}'");
             });
+
+            Console.WriteLine($"Updated '{Path.GetFullPath(TargetResx)}'");
+            Console.WriteLine($"Set access modifier to let VS create {Path.GetFileNameWithoutExtension(ResxFile)}.Designer.cs");
 
             return 0;
         }
