@@ -18,15 +18,15 @@
         public string SourcePath { get; set; }
 
         /// <summary>
-        /// Gets or sets the targetResx.
+        /// Gets or sets the TargetResx.
         /// </summary>
-        [Option('t', "targetResx", HelpText = "Target path where .resx files will be created.", Required = true)]
+        [Option('t', "targetResx", HelpText = "Target path where .resx file will be updated.", Required = true)]
         public string TargetResx { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether ReplaceMode.
         /// </summary>
-        [Option('r', "replaceMode", HelpText = "Make file replacements, otherwise new files will be created for debug pourposes.", Default = true)]
+        [Option('r', "replaceMode", HelpText = "Make .cshtml and .resx file replacements, otherwise new files will be created for debug pourposes.")]
         public bool ReplaceMode { get; set; }
 
         /// <summary>
@@ -44,11 +44,11 @@
             {
                 var extractor = new ExtractHelper(sourceFile, ReplaceMode);
                 new ResxHelper(TargetResx, ReplaceMode).UpdateResxFile(extractor.Extract(TargetResx));
-                Console.WriteLine($"Extracted '{sourceFile}'");
+                Console.WriteLine($"Extracted '{Path.GetFullPath(sourceFile)}'");
             });
 
             Console.WriteLine($"Updated '{Path.GetFullPath(TargetResx)}'");
-            Console.WriteLine($"Set access modifier to let VS create {Path.GetFileNameWithoutExtension(TargetResx)}.Designer.cs");
+            Console.WriteLine($"Ensure public access modifier on VS to create {Path.GetFileNameWithoutExtension(TargetResx)}.Designer.cs");
 
             return 0;
         }

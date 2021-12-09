@@ -94,19 +94,15 @@ A Razor reference will be written in place, referencing the value on the resourc
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
 You can execute current release with Docker.
 
 ```pws
-docker run --rm --network=host ghcr.io/ark667/Resxtractor:master copy `
-    --dynamoaccesskey *** `
-    --dynamosecretaccesskey *** `
-    --dynamoregion [region] `
-    --mongoconnectionstring "mongodb://[host]:[port]/[database]" `
-    --dynamotable [tablename]
+docker run --rm -v "$($PWD):/home" ghcr.io/ark667/resxtractor:master `
+    -s ../home/[relative_path_to_cshtmls] `
+    -t ../home/[relative_path_to_resx] `
 ```
 
 You can also clone the repo and build it yourself.
@@ -120,13 +116,13 @@ You can also clone the repo and build it yourself.
 2. Build application
 
    ```pws
-   dotnet build Resxtractor.sln
+   dotnet build .\Resxtractor\Resxtractor.sln
    ```
 
 3. Execute help option
 
-   ```sh
-   .\Resxtractor.exe --help
+   ```pws
+   .\Resxtractor\Resxtractor\bin\Debug\net5.0\Resxtractor.exe --help
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -135,41 +131,28 @@ You can also clone the repo and build it yourself.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Basic usage is pretty straightforrward. Just call copy verb with required keys and parameters.
+Basic usage is pretty straightforward. Just call with required paths. By default the tool will create new files
+with modifications, use -r argument to make replacements.
 
 ```pws
-.\Resxtractor.exe copy `
-    --dynamoaccesskey *** `
-    --dynamosecretaccesskey *** `
-    --dynamoregion [region] `
-    --mongoconnectionstring "mongodb://[host]:[port]/[database]" `
-    --dynamotable [tablename]
+.\Resxtractor.exe `
+    -s ../home/[relative_path_to_cshtmls] `
+    -t ../home/[relative_path_to_resx] `
 ```
 
-Can also be executed from Docker container.
+Can also be executed from Docker container. First build the image.
 
 ```pws
-docker build -f ".\Resxtractor\Dockerfile" .
+docker build -f ".\Resxtractor\Resxtractor\Dockerfile" .
 ```
 
-```pws
-docker run --rm --network=host Resxtractor copy `
-    --dynamoaccesskey *** `
-    --dynamosecretaccesskey *** `
-    --dynamoregion [region] `
-    --mongoconnectionstring "mongodb://[host]:[port]/[database]" `
-    --dynamotable [tablename]
-```
-
-If you need authentication. Specified database is used for database operations, not as authetication database as default mongodb behaviour on connection string.
+Then execute from container. The mapped volume will allow
+the command to access local files to make the extractions.
 
 ```pws
-docker run --rm --network=host Resxtractor copy 
-    --dynamoaccesskey *** 
-    --dynamosecretaccesskey *** 
-    --dynamoregion [region] 
-    --mongoconnectionstring "mongodb://[user]:[password]@[host]:[port]/[database]" 
-    --dynamotable [tablename]
+docker run --rm -v "$($PWD):/home" ghcr.io/ark667/resxtractor:master `
+    -s ../home/[relative_path_to_cshtmls] `
+    -t ../home/[relative_path_to_resx] `
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
