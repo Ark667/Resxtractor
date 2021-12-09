@@ -49,7 +49,7 @@
         /// <returns>The <see cref="string"/>.</returns>
         public static string GetResxFile(string resxFolder, string sourceFile)
         {
-            string[] sourceFilePath = Path.GetDirectoryName(sourceFile).Split('\\');
+            string[] sourceFilePath = Path.GetDirectoryName(sourceFile).Split(Path.DirectorySeparatorChar);
             var folder = Path.Combine(resxFolder, sourceFilePath.Last());
             if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
