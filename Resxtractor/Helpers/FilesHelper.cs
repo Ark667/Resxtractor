@@ -50,10 +50,10 @@
         public static string GetResxFile(string resxFolder, string sourceFile)
         {
             string[] sourceFilePath = Path.GetDirectoryName(sourceFile).Split('\\');
-            if (!Directory.Exists($"{resxFolder}\\{sourceFilePath.Last()}"))
-                Directory.CreateDirectory($"{resxFolder}\\{sourceFilePath.Last()}");
+            var folder = Path.Combine(resxFolder, sourceFilePath.Last());
+            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
-            string resxFile = $"{resxFolder}\\{sourceFilePath.Last()}\\{sourceFilePath.Last()}.resx";
+            string resxFile = Path.Combine(folder, $"{sourceFilePath.Last()}.resx");
             Debug.WriteLine($"Guessing resx file '{resxFile}'");
 
             return resxFile;
