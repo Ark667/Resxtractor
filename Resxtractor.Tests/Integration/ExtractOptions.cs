@@ -18,8 +18,8 @@
         {
             var extractor = new Options.ExtractOptions()
             {
-                SourcePath = Path.GetFullPath(@"..\..\..\..\..\Resxtractor\Resxtractor.Tests.Template\Pages\Index.cshtml"),
-                TargetResx = Path.GetFullPath(@"..\..\..\..\..\Resxtractor\Resxtractor.Tests.Template\Resources\Language.resx"),
+                SourcePath = Path.GetFullPath(@"../../../../../Resxtractor/Resxtractor.Tests.Template/Pages/Index.cshtml"),
+                TargetResx = Path.GetFullPath(@"../../../../../Resxtractor/Resxtractor.Tests.Template/Resources/Language.resx"),
                 ReplaceMode = false,
             };
 
