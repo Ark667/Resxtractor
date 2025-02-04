@@ -58,7 +58,7 @@
             contents = Regex.Replace(contents, "(?<!\r)\r", "");
 
             var regx = new Regex(@"[(*)][)]");
-            var nodes = document.Body.Descendents()
+            var nodes = document.Body.Descendants()
                 .Where(o => o.NodeType == NodeType.Text
                 && !(o.ParentElement is AngleSharp.Html.Dom.IHtmlScriptElement)
                 && o.Text().Trim() != ""
