@@ -1,17 +1,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resxtractor.Services;
 using System.IO;
 
 namespace Resxtractor.Tests.Unit;
 
 [TestClass]
 [TestCategory("Unit")]
-public class ExtractHelper
+public class ExtractServiceTest
 {
     [TestMethod]
     public void Extract()
     {
-        var helper = new ExtractService(
+        var helper = new Services.ExtractService(
             Path.GetFullPath(@"../../../Resources/Inputs/Extract1.html"),
             replace: false,
             @namespace: "SomeNamespace"
@@ -32,7 +31,7 @@ public class ExtractHelper
     [TestMethod]
     public void GetReferenceName()
     {
-        var helper = new ExtractService(
+        var helper = new Services.ExtractService(
             Path.GetFullPath(@"../../../Resources/Inputs/Extract1.html"),
             @namespace: "SomeNamespace"
         );
@@ -60,7 +59,7 @@ public class ExtractHelper
         // Namespace from designer
         helper.Namespace = null;
         Assert.AreEqual(
-            "@.GetReferenceName.Extract1_0",
+            "@Resxtractor.Tests.Resources.GetReferenceName.Extract1_0",
             helper.GetReferenceName(
                 Path.GetFullPath(@"../../../Resources/GetReferenceName.resx"),
                 "Extract1_0"

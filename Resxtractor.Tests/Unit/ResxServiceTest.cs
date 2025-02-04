@@ -1,17 +1,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resxtractor.Services;
 using System.IO;
 
 namespace Resxtractor.Tests.Unit;
 
 [TestClass]
 [TestCategory("Unit")]
-public class ResxHelper
+public class ResxServiceTest
 {
     [TestMethod]
     public void UpdateResxFile()
     {
-        var helper = new ResxService(Path.GetFullPath(@"..\..\..\Resources\UpdateResxFile.resx"));
+        var helper = new Services.ResxService(Path.GetFullPath(@"..\..\..\Resources\UpdateResxFile.resx"));
 
         // Empty file
         File.Delete(helper.ResxFile);
@@ -61,7 +60,7 @@ public class ResxHelper
     [TestMethod]
     public void GetKeyFromValue()
     {
-        var helper = new ResxService(Path.GetFullPath(@"../../../Resources/GetKeyFromValue.resx"));
+        var helper = new Services.ResxService(Path.GetFullPath(@"../../../Resources/GetKeyFromValue.resx"));
 
         Assert.IsTrue(helper.GetKeyFromValue("test") == "String1");
         Assert.IsTrue(helper.GetKeyFromValue("fail") == null);

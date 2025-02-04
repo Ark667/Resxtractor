@@ -8,7 +8,7 @@ using System.Linq;
 namespace Resxtractor.Tests.Unit;
 
 [TestClass]
-public class FilesHelper
+public class FilesHelperTest
 {
     [TestMethod]
     [TestCategory("Unit")]
@@ -70,7 +70,7 @@ public class FilesHelper
     public void GetNamespaceFromResxFile()
     {
         Assert.AreEqual(
-            "",
+            "Resxtractor.Tests.Resources",
             Helpers.FilesHelper.GetNamespaceFromResxFile(
                 Path.GetFullPath(@"../../../Resources/GetNamespaceFromResxFile.resx")
             )

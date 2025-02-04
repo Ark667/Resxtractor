@@ -5,7 +5,7 @@ namespace Resxtractor.Tests.Integration;
 
 [TestClass]
 [TestCategory("Integration")]
-public class ExtractOptions
+public class ExtractOptionsTest
 {
     [TestMethod]
     public void Extract()
